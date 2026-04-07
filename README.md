@@ -34,18 +34,5 @@ You can find these under the **HydroShark** category in your ComfyUI node menu:
 2. **HydroShark Scheduler**: Generates a custom schedule for use with standard `SamplerCustom`.
 3. **HydroShark Sampler**: The core sampler for use with standard `SamplerCustom`.
 
-## Quick Start (Recommended Settings)
-
-For standard **Z-Image-Turbo** generation (8-9 steps), we recommend using the **HydroShark KSampler** with the following settings:
-- **steps:** `9`
-- **cfg:** `1.0`
-- **sampler_method:** `hydro_heun2`
-- **scheduler_mode:** `flow_linear`
-- **cfg_rescale:** `0.7`
-- **midpoint_bias:** `0.4`
-- **corrector_steps:** `1`
-
-*(Tip: If generation is a bit too slow, change `sampler_method` to `hydro_euler` and `corrector_steps` to `0`)*
-
 ## License
 MIT License. Free for personal and commercial use.
