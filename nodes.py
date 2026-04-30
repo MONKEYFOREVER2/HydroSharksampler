@@ -15,6 +15,7 @@ import comfy.samplers
 import comfy.sample
 import comfy.utils
 import comfy.model_management
+import latent_preview
 from tqdm.auto import trange
 
 
@@ -390,7 +391,9 @@ class HydroSharkKSampler:
         latent_samples = latent["samples"]
         noise = comfy.sample.prepare_noise(latent_samples, seed)
 
-        # disable_pbar=False so ComfyUI step previews fire correctly.
+        callback = latent_preview.prepare_callback(model, sigmas.shape[-1] - 1)
+        disable_pbar = not comfy.utils.PROGRESS_BAR_ENABLED
+
         out_samples = comfy.sample.sample_custom(
             model,
             noise,
@@ -401,7 +404,8 @@ class HydroSharkKSampler:
             negative,
             latent_samples,
             noise_mask=latent.get("noise_mask"),
-            disable_pbar=False,
+            callback=callback,
+            disable_pbar=disable_pbar,
             seed=seed,
         )
 
